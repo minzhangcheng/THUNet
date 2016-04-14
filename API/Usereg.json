@@ -1,0 +1,30 @@
+{
+    "timeout": 3,
+
+    "cookies": {
+        "url": "http://usereg.tsinghua.edu.cn/do.php",
+        "parameters": {
+            "fixed": {
+                "action": "login"
+            },
+            "variable": {
+                "username": "user_login_name",
+                "password": "user_password"
+            }
+        },
+        "result": {
+            "default": false,
+            "others": {
+                "Login is successful.": true
+            }
+        }
+    },
+
+    "user": {
+        "url": "http://usereg.tsinghua.edu.cn/user_info.php"
+    },
+
+    "online": {
+        "url": "http://usereg.tsinghua.edu.cn/online_user_ipv4.php"
+    }
+}
