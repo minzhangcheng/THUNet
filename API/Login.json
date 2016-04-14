@@ -32,8 +32,8 @@
         "result": {
             "default": false,
             "others": {
-                "logout_ok": true,
-                "not_online_error": true
+                "Logout is successful.": true,
+                "You are not online.": true
             }
         }
     },
@@ -60,8 +60,7 @@
         "parameters": {
             "fixed": {},
             "variable": {}
-        },
-        "result": {}
+        }
     },
 
     "info_parse": {
@@ -74,4 +73,5 @@
         "ip": 8,
         "money_remain": 11
     }
+
 }

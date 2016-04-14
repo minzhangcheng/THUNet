@@ -13,10 +13,10 @@
 #
 # ############################################################################
 
-from __future__ import *
-import hashlib
+import __future__
 import json
 import requests
+import hashlib
 
 configFile = 'Login.json'
 
@@ -34,7 +34,6 @@ def _post(key, extraParameters={}, timeout=0):
         if i in conf['parameters']['variable']:
             parameters.setdefault(conf['parameters']['variable'][i],
                                   extraParameters[i])
-    result = conf['result']
     try:
         r = requests.post(url, parameters, timeout=timeout)
         content = r.text
@@ -42,22 +41,28 @@ def _post(key, extraParameters={}, timeout=0):
     except Exception as e:
         print(e)
         return False
-    if content in result['others']:
-        return result['others'][content]
-    elif result['default']:
-        return result['default']
+    if 'result' in conf:
+        result = conf['result']
+        if content in result['others']:
+            return result['others'][content]
+        elif 'default' in result:
+            return result['default']
+        else:
+            return content
     else:
         return content
 
 
 def _md5(text):
-    h = hashlib.md5(text)
+    h = hashlib.md5(text.encode())
     return h.hexdigest()
 
 
 def login(username, password, hashed=False, timeout=0):
     if not hashed:
         password = '{MD5_HEX}%s' % _md5(password)
+    else:
+        password = '{MD5_HEX}%s' % password
     extra = {'username': username, 'password': password}
     return _post('login', extra, timeout=timeout)
 
