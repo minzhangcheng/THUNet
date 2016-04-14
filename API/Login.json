@@ -1,0 +1,54 @@
+{
+    "timeout": 3,
+
+    "login": {
+        "url": "http://net.tsinghua.edu.cn/do_login.php",
+        "parameters": {
+            "fixed": {
+                "action": "login",
+                "ac_id": "1"
+            },
+            "variable": {
+                "username": "username",
+                "password": "password"
+            }
+        },
+        "result": {
+            "default": false,
+            "others": {
+                "Login is successful.": true
+            }
+        }
+    },
+
+    "logout": {
+        "url": "http://net.tsinghua.edu.cn/do_login.php",
+        "parameters": {
+            "fixed": {
+                "action": "logout"
+            },
+            "variable": {}
+        },
+        "result": {
+            "default": "",
+            "others": {}
+        }
+    },
+
+    "check": {
+        "url": "http://net.tsinghua.edu.cn/do_login.php",
+        "parameters": {
+            "fixed": {
+                "action": "check_online"
+            },
+            "variable": {}
+        },
+        "result": {
+            "default": false,
+            "others": {
+                "online": true,
+                "not_online": false
+            }
+        }
+    }
+}
