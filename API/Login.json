@@ -38,7 +38,7 @@
         }
     },
 
-    "check": {
+    "online": {
         "url": "http://net.tsinghua.edu.cn/do_login.php",
         "parameters": {
             "fixed": {
@@ -53,5 +53,25 @@
                 "not_online": false
             }
         }
+    },
+
+    "info": {
+        "url": "http://net.tsinghua.edu.cn/rad_user_info.php",
+        "parameters": {
+            "fixed": {},
+            "variable": {}
+        },
+        "result": {}
+    },
+
+    "info_parse": {
+        "sep": ",",
+        "length": 13,
+        "username": 0,
+        "time_begin": 1,
+        "time_end": 2,
+        "usage": 6,
+        "ip": 8,
+        "money_remain": 11
     }
 }

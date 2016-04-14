@@ -62,10 +62,31 @@ def login(username, password, hashed=False, timeout=0):
     return _post('login', extra, timeout=timeout)
 
 
-def check(timeout=0):
-    return _post('check', timeout=timeout)
+def online(timeout=0):
+    return _post('online', timeout=timeout)
+
+
+def info(timeout=0, sep=','):
+    rf = open(configFile, 'r')
+    config = json.load(rf)
+    rf.close()
+    conf = config['info_parse']
+    r = _post('info', timeout=timeout).split(conf['sep'])
+    if len(r) != conf['length']:
+        w = "Warning: result from Login.info is not compacat with set."
+    username = r[conf['username']]
+    lastTime = int(r[conf['time_end']]) - int(r[conf['time_begin']])
+    ipAddress = r[conf['ip']]
+    usage = int(r[conf['usage']])
+    moneyRemain = float(r[conf['money_remain']])
+    return {
+        'username': username,
+        'connected': lastTime,
+        'ip': ipAddress,
+        'usage': usage,
+        'money': moneyRemain
+    }
 
 
 def logout(timeout=0):
-    _post('logout', timeout=timeout)
-    return not check(timeout=timeout)
+    return _post('logout', timeout=timeout)
