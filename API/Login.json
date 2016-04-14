@@ -30,8 +30,11 @@
             "variable": {}
         },
         "result": {
-            "default": "",
-            "others": {}
+            "default": false,
+            "others": {
+                "logout_ok": true,
+                "not_online_error": true
+            }
         }
     },
 
