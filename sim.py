@@ -1,14 +1,14 @@
 import sys
-from PyQt4 import QtCore, QtGui, uic
+from PyQt5 import QtCore, QtWidgets, uic
 import API.Login as AL
 
 qtCreatorFile = "sim.ui"
 
 Ui_MainWindow, QtBaseClass = uic.loadUiType(qtCreatorFile)
 
-class MyApp(QtGui.QMainWindow, Ui_MainWindow):
+class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
-        QtGui.QMainWindow.__init__(self)
+        QtWidgets.QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
         self.online = AL.online()
         self.state = dict()
@@ -20,22 +20,22 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
 
     def setInfo(self):
         if not AL.online():
-            self.info.setText('You are currently offline.')
-            self.action.setText('Connect')
+            self.info.setText('您未登陆在线.')
+            self.action.setText('连接')
             self.online = False
             self.state = dict()
         else:
             self.state = AL.info()
-            infoText = 'You are currently online.\n'
-            infoText += 'User: %s\n' % self.state['username']
-            infoText += 'IP: %s\n' % self.state['ip']
-            infoText += 'Usage: %f GB\n' \
+            infoText = '您已经登陆在线了.\n'
+            infoText += '用户名: %s\n' % self.state['username']
+            infoText += 'IP地址: %s\n' % self.state['ip']
+            infoText += '已用流量: %f GB\n' \
                         % float(self.state['usage']/1024/1024/1024.0)
-            infoText += 'Account Balance: %f' % self.state['money']
+            infoText += '帐号余额: %f元' % self.state['money']
             self.info.setText(infoText)
             pro = int(self.state['usage']/1024/1024/1024.0)
             self.usage.setValue(int(self.state['usage']/1024/1024/1024.0))
-            self.action.setText('Disconnect')
+            self.action.setText('断开连接')
             self.online = True
 
     def change(self):
@@ -52,7 +52,7 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
 
 
 if __name__ == "__main__":
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     window = MyApp()
     window.show()
     sys.exit(app.exec_())
