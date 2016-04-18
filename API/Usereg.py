@@ -13,12 +13,12 @@
 #
 # ############################################################################
 
-from __future__ import *
+import __future__
 import hashlib
 import json
 import requests
 
-configFile = 'Usereg.json'
+configFile = '/Users/minzhang/Coding/THUNet/API/Usereg.json'
 
 
 def _md5(text):

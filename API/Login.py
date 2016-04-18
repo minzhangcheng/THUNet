@@ -18,7 +18,7 @@ import json
 import requests
 import hashlib
 
-configFile = 'Login.json'
+configFile = '/Users/minzhang/Coding/THUNet/API/Login.json'
 
 
 def _post(key, extraParameters={}, timeout=0):
